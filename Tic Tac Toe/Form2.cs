@@ -486,7 +486,7 @@ namespace Tic_Tac_Toe
             
         }
 
-        // Shows the winner
+        /* Shows the winner
         private void hasWinner()
         {
             if (winner == 1)
@@ -503,107 +503,141 @@ namespace Tic_Tac_Toe
                 MessageBox.Show("Computer wins!");
                 button_disable = true;
             }
+        }*/
+
+        //  Thread - Checks who is the winner
+        private void whoWins(object sender, EventArgs e)
+        {
+            Thread th = new Thread(checkWinner);
+            th.Start();
         }
 
-        //  Checks who is the winner
+        private delegate void DelegateWinner();
+
         private void checkWinner()
         {
-            //  Player
-            if (button1.Text == "X" && button2.Text == "X" && button3.Text == "X")
+            if (this.InvokeRequired)
             {
-                winner = 1;
-                hasWinner();
+                DelegateWinner md = new DelegateWinner(checkWinner);
+                this.Invoke(md, null);
             }
-            if (button4.Text == "X" && button5.Text == "X" && button6.Text == "X")
+            else
             {
-                winner = 1;
-                hasWinner();
-            }
-            if (button7.Text == "X" && button8.Text == "X" && button9.Text == "X")
-            {
-                winner = 1;
-                hasWinner();
-            }
-            if (button1.Text == "X" && button4.Text == "X" && button7.Text == "X")
-            {
-                winner = 1;
-                hasWinner();
-            }
-            if (button2.Text == "X" && button5.Text == "X" && button8.Text == "X")
-            {
-                winner = 1;
-                hasWinner();
-            }
-            if (button3.Text == "X" && button6.Text == "X" && button9.Text == "X")
-            {
-                winner = 1;
-                hasWinner();
-            }
-            if (button1.Text == "X" && button5.Text == "X" && button9.Text == "X")
-            {
-                winner = 1;
-                hasWinner();
-            }
-            if (button3.Text == "X" && button5.Text == "X" && button7.Text == "X")
-            {
-                winner = 1;
-                hasWinner();
-            }
+                //  Player
+                if (button1.Text == "X" && button2.Text == "X" && button3.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button4.Text == "X" && button5.Text == "X" && button6.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button7.Text == "X" && button8.Text == "X" && button9.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button1.Text == "X" && button4.Text == "X" && button7.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button2.Text == "X" && button5.Text == "X" && button8.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button3.Text == "X" && button6.Text == "X" && button9.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button1.Text == "X" && button5.Text == "X" && button9.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
+                if (button3.Text == "X" && button5.Text == "X" && button7.Text == "X")
+                {
+                    winner = 1;
+                    hasWinner();
+                }
 
-            // Computer
-            if (button1.Text == "O" && button2.Text == "O" && button3.Text == "O")
-            {
+                // Computer
+                if (button1.Text == "O" && button2.Text == "O" && button3.Text == "O")
+                {
 
-                winner = 2;
-                hasWinner();
-            }
-            if (button4.Text == "O" && button5.Text == "O" && button6.Text == "O")
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button4.Text == "O" && button5.Text == "O" && button6.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button7.Text == "O" && button8.Text == "O" && button9.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button1.Text == "O" && button4.Text == "O" && button7.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button2.Text == "O" && button5.Text == "O" && button8.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button3.Text == "O" && button6.Text == "O" && button9.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button1.Text == "O" && button5.Text == "O" && button9.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+                if (button3.Text == "O" && button5.Text == "O" && button7.Text == "O")
+                {
+                    winner = 2;
+                    hasWinner();
+                }
+
+                //  Draw
+                if (rounds == 9 && winner == 0)
+                {
+                    draws++;
+                    label6.Text = Convert.ToString(draws);
+                    MessageBox.Show("Draw!");
+                    button_disable = true;
+                }
+                if (turn == true && winner == 0 && rounds != 9)
+                {
+                    Offensive();
+                }
+            }           
+        }
+
+        private void hasWinner()
+        {
+            if (winner == 1)
             {
-                winner = 2;
-                hasWinner();
-            }
-            if (button7.Text == "O" && button8.Text == "O" && button9.Text == "O")
-            {
-                winner = 2;
-                hasWinner();
-            }
-            if (button1.Text == "O" && button4.Text == "O" && button7.Text == "O")
-            {
-                winner = 2;
-                hasWinner();
-            }
-            if (button2.Text == "O" && button5.Text == "O" && button8.Text == "O")
-            {
-                winner = 2;
-                hasWinner();
-            }
-            if (button3.Text == "O" && button6.Text == "O" && button9.Text == "O")
-            {
-                winner = 2;
-                hasWinner();
-            }
-            if (button1.Text == "O" && button5.Text == "O" && button9.Text == "O")
-            {
-                winner = 2;
-                hasWinner();
-            }
-            if (button3.Text == "O" && button5.Text == "O" && button7.Text == "O")
-            {
-                winner = 2;
-                hasWinner();
-            }
-            
-            //  Draw
-            if (rounds == 9 && winner == 0)
-            {                
-                draws++;
-                label6.Text = Convert.ToString(draws);
-                MessageBox.Show("Draw!");
+                x_wins++;
+                label4.Text = Convert.ToString(x_wins);
+                MessageBox.Show("Player wins!");
                 button_disable = true;
             }
-            if (turn == true && winner == 0 && rounds != 9)
+            else if (winner == 2)
             {
-                Offensive();
+                o_wins++;
+                label5.Text = Convert.ToString(o_wins);
+                MessageBox.Show("Computer wins!");
+                button_disable = true;
             }
         }
 

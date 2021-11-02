@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Tic_Tac_Toe
 {
@@ -50,119 +51,135 @@ namespace Tic_Tac_Toe
             }
         }
 
+        //  Thread - Check the winner
+        private void whoWins(object sender, EventArgs e)
+        {
+            Thread th = new Thread(checkingWinner);
+            th.Start();
+        }
+
+        private delegate void DelegateWinner();
+
         private void checkingWinner()
         {
-            // Checking if Player 1(X) won - horizontal 
-            if (Global.A == 1 && Global.B == 1 && Global.C == 1)
+            if (this.InvokeRequired)
             {
-                Global.p1 = 1;
-                wins();
+                DelegateWinner md = new DelegateWinner(checkingWinner);
+                this.Invoke(md, null);
             }
-
-            if (Global.D == 1 && Global.E == 1 && Global.F == 1)
+            else
             {
-                Global.p1 = 1;
-                wins();
-            }
+                // Checking if Player 1(X) won - horizontal 
+                if (Global.A == 1 && Global.B == 1 && Global.C == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            if (Global.G == 1 && Global.H == 1 && Global.I == 1)
-            {
-                Global.p1 = 1;
-                wins();
-            }
+                if (Global.D == 1 && Global.E == 1 && Global.F == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            //  Checking if Player 1(X) won - vertical
-            if (Global.A == 1 && Global.D == 1 && Global.G == 1)
-            {
-                Global.p1 = 1;
-                wins();
-            }
+                if (Global.G == 1 && Global.H == 1 && Global.I == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            if (Global.B == 1 && Global.E == 1 && Global.H == 1)
-            {
-                Global.p1 = 1;
-                wins();
-            }
+                //  Checking if Player 1(X) won - vertical
+                if (Global.A == 1 && Global.D == 1 && Global.G == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            if (Global.C == 1 && Global.F == 1 && Global.I == 1)
-            {
-                Global.p1 = 1;
-                wins();
-            }
+                if (Global.B == 1 && Global.E == 1 && Global.H == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            // Checking if Player 1(X) won - diagonal
-            if (Global.A == 1 && Global.E == 1 && Global.I == 1)
-            {
-                Global.p1 = 1;
-                wins();
-            }
+                if (Global.C == 1 && Global.F == 1 && Global.I == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            if (Global.C == 1 && Global.E == 1 && Global.G == 1)
-            {
-                Global.p1 = 1;
-                wins();
-            }
+                // Checking if Player 1(X) won - diagonal
+                if (Global.A == 1 && Global.E == 1 && Global.I == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            // Checking if Player 2(O) won - horizontal 
-            if (Global.A == 2 && Global.B == 2 && Global.C == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                if (Global.C == 1 && Global.E == 1 && Global.G == 1)
+                {
+                    Global.p1 = 1;
+                    wins();
+                }
 
-            if (Global.D == 2 && Global.E == 2 && Global.F == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                // Checking if Player 2(O) won - horizontal 
+                if (Global.A == 2 && Global.B == 2 && Global.C == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            if (Global.G == 2 && Global.H == 2 && Global.I == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                if (Global.D == 2 && Global.E == 2 && Global.F == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            //  Checking if Player 2(O) won - vertical
-            if (Global.A == 2 && Global.D == 2 && Global.G == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                if (Global.G == 2 && Global.H == 2 && Global.I == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            if (Global.B == 2 && Global.E == 2 && Global.H == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                //  Checking if Player 2(O) won - vertical
+                if (Global.A == 2 && Global.D == 2 && Global.G == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            if (Global.C == 2 && Global.F == 2 && Global.I == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                if (Global.B == 2 && Global.E == 2 && Global.H == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            // Checking if Player 2(O) won - diagonal
-            if (Global.A == 2 && Global.E == 2 && Global.I == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                if (Global.C == 2 && Global.F == 2 && Global.I == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            if (Global.C == 2 && Global.E == 2 && Global.G == 2)
-            {
-                Global.p1 = 2;
-                wins();
-            }
+                // Checking if Player 2(O) won - diagonal
+                if (Global.A == 2 && Global.E == 2 && Global.I == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            //  Checking if it's a draw
-            if (Global.p1 == 0 && Global.rounds == 9)
-            {
-                Global.tie++;
-                label6.Text = Convert.ToString(Global.tie);
-                MessageBox.Show("Draw!");
-                Global.button_disable = true;
+                if (Global.C == 2 && Global.E == 2 && Global.G == 2)
+                {
+                    Global.p1 = 2;
+                    wins();
+                }
 
-            }
+                //  Checking if it's a draw
+                if (Global.p1 == 0 && Global.rounds == 9)
+                {
+                    Global.tie++;
+                    label6.Text = Convert.ToString(Global.tie);
+                    MessageBox.Show("Draw!");
+                    Global.button_disable = true;
+                }
+            }           
         }
 
         //  Action in Button 2
