@@ -51,7 +51,7 @@ namespace Tic_Tac_Toe
             }
         }
 
-        //  Thread - Check the winner
+        //  Thread - Checks the winner
         private void whoWins(object sender, EventArgs e)
         {
             Thread th = new Thread(checkingWinner);
@@ -398,23 +398,39 @@ namespace Tic_Tac_Toe
             }
         }
 
+        //  Thread - Shows the winner
+        private void showWinner(object sender, EventArgs e)
+        {
+            Thread th = new Thread(wins);
+            th.Start();
+        }
+
+        private delegate void DelegateWhoWins();
+        
         private void wins()
         {
-            if (Global.p1 == 1)
+            if (this.InvokeRequired)
             {
-                Global.player1_wins++;
-                label4.Text = Convert.ToString(Global.player1_wins);
-                MessageBox.Show("Player 1 wins!");
-                Global.button_disable = true;
+                DelegateWhoWins md = new DelegateWhoWins(wins);
+                this.Invoke(md, null);
             }
-            else if (Global.p1 == 2)
+            else
             {
-                Global.player2_wins++;
-                label5.Text = Convert.ToString(Global.player2_wins);
-                MessageBox.Show("Player 2 wins!");
-                Global.button_disable = true;
+                if (Global.p1 == 1)
+                {
+                    Global.player1_wins++;
+                    label4.Text = Convert.ToString(Global.player1_wins);
+                    MessageBox.Show("Player 1 wins!");
+                    Global.button_disable = true;
+                }
+                else if (Global.p1 == 2)
+                {
+                    Global.player2_wins++;
+                    label5.Text = Convert.ToString(Global.player2_wins);
+                    MessageBox.Show("Player 2 wins!");
+                    Global.button_disable = true;
+                }
             }
-
         }
 
         // Reset game
