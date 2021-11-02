@@ -191,6 +191,7 @@ namespace Tic_Tac_Toe
             this.button10.TabIndex = 15;
             this.button10.Text = "Reset";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button11
             // 
@@ -200,6 +201,7 @@ namespace Tic_Tac_Toe
             this.button11.TabIndex = 16;
             this.button11.Text = "Player vs Player";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // Form2
             // 

@@ -450,9 +450,57 @@ namespace Tic_Tac_Toe
         // Go to Player vs Computer
         private void button11_Click(object sender, EventArgs e)
         {
+            Global.A = 0;
+            Global.B = 0;
+            Global.C = 0;
+            Global.D = 0;
+            Global.E = 0;
+            Global.F = 0;
+            Global.G = 0;
+            Global.H = 0;
+            Global.I = 0;
+            Global.rounds = 0;
+            button1.Text = " ";
+            button2.Text = " ";
+            button3.Text = " ";
+            button4.Text = " ";
+            button4.Text = " ";
+            button5.Text = " ";
+            button6.Text = " ";
+            button7.Text = " ";
+            button8.Text = " ";
+            button9.Text = " ";
+            button1.BackColor = Color.Empty;
+            button2.BackColor = Color.Empty;
+            button3.BackColor = Color.Empty;
+            button4.BackColor = Color.Empty;
+            button5.BackColor = Color.Empty;
+            button6.BackColor = Color.Empty;
+            button7.BackColor = Color.Empty;
+            button8.BackColor = Color.Empty;
+            button9.BackColor = Color.Empty;
+            Global.player1_wins = 0;
+            Global.player2_wins = 0;
+            label4.Text = "0";
+            label5.Text = "0";
+            label6.Text = "0";
+
+            Global.button_disable = false;
+
+            if (Global.p1 == 1 || Global.p1 == 0)
+            {
+                Global.turn = false;
+                Global.p1 = 0;
+            }
+            else if (Global.p1 == 2)
+            {
+                Global.turn = true;
+                Global.p1 = 0;
+            }
             this.Hide();
-            Form2 frm2 = new Form2();
-            frm2.Show();
+            Form2 form2 = new Form2();
+            form2.formInstanceReference = this;
+            form2.Show();
         }
     }
 }
