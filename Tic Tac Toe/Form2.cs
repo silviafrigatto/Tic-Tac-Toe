@@ -486,7 +486,7 @@ namespace Tic_Tac_Toe
             
         }
 
-        /* Shows the winner
+        // Shows the winner
         private void hasWinner()
         {
             if (winner == 1)
@@ -503,7 +503,7 @@ namespace Tic_Tac_Toe
                 MessageBox.Show("Computer wins!");
                 button_disable = true;
             }
-        }*/
+        }
 
         //  Thread - Checks who is the winner
         private void whoWins(object sender, EventArgs e)
@@ -621,24 +621,6 @@ namespace Tic_Tac_Toe
                     Offensive();
                 }
             }           
-        }
-
-        private void hasWinner()
-        {
-            if (winner == 1)
-            {
-                x_wins++;
-                label4.Text = Convert.ToString(x_wins);
-                MessageBox.Show("Player wins!");
-                button_disable = true;
-            }
-            else if (winner == 2)
-            {
-                o_wins++;
-                label5.Text = Convert.ToString(o_wins);
-                MessageBox.Show("Computer wins!");
-                button_disable = true;
-            }
         }
 
         //  Buttons
@@ -771,8 +753,6 @@ namespace Tic_Tac_Toe
             button8.BackColor = Color.Empty;
             button9.BackColor = Color.Empty;
             rounds = 0;
-            x_wins = 0;
-            o_wins = 0;
             button_disable = false;
             if (winner == 1 || winner == 0)
             {
